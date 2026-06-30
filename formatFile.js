@@ -1,5 +1,5 @@
 let arrayOfObjects = [];
-document.getElementById("BtnUpload").addEventListener("click",formataDados);
+document.getElementById("btnUpload").addEventListener("click",formataDados);
 
 function formataDados (){
     arrayOfObjects = [];
@@ -25,4 +25,5 @@ function evento (e){
             arrayOfObjects.push(leitura);
         }
     }
+    calculos();
 }

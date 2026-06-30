@@ -4,22 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gráficos DC4K</title>
-
-    <script src="calculations.js"></script>
-    <script src="controllerPage.js"></script>
-    <script src="formatFile.js"></script>
-    <script src="graphics.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="main" id="main">
-        <div class="upload" id="main">
+        <div class="titulo">
+            <h1>Análise da Composteira</h1>
+            <p class="subtitulo">
+                Envie um arquivo CSV para visualizar estatísticas e gráficos dos sensores.
+            </p>
+        </div>
+        <div class="upload" id="upload">
             <label for="file">Adicione seu arquivo aqui</label>
             <input type="file" name="file" id="file" class="file">
 
             <button class="btnUpload" id="btnUpload">Enviar</button>
         </div>
 
+        <div class="divTabela" id="divTabela">
+            <table class="tabela" id="tabela">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>Média</th>
+                        <th>Mínimo</th>
+                        <th>Máximo</th>
+                        <th>Desvio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="linhaTempDentro" id="linhaTempDentro">
+                        <td>Temperatura Interior</td>
+                        <td class="MdTempDentro" id="MdTempDentro"></td>
+                        <td class="MinTempDentro" id="MinTempDentro"></td>
+                        <td class="MaxTempDentro" id="MaxTempDentro"></td>
+                        <td class="DesTempDentro" id="DesTempDentro"></td>
+                    </tr>
+                    <tr class="linhaTempFora" id="linhaTempFora">
+                        <td>Temperatura Exterior</td>
+                        <td class="MdTempFora" id="MdTempFora"></td>
+                        <td class="MinTempFora" id="MinTempFora"></td>
+                        <td class="MaxTempFora" id="MaxTempFora"></td>
+                        <td class="DesTempFora" id="DesTempFora"></td>
+                    </tr>
+                    <tr class="linhaUmidDentro" id="linhaUmidDentro">
+                        <td>Umidade Interior</td>
+                        <td class="MdUmidDentro" id="MdUmidDentro"></td>
+                        <td class="MinUmidDentro" id="MinUmidDentro"></td>
+                        <td class="MaxUmidDentro" id="MaxUmidDentro"></td>
+                        <td class="DesUmidDentro" id="DesUmidDentro"></td>
+                    </tr>
+                    <tr class="linhaUmidFora" id="linhaUmidFora">
+                        <td>Umidade Exterior</td>
+                        <td class="MdUmidFora" id="MdUmidFora"></td>
+                        <td class="MinUmidFora" id="MinUmidFora"></td>
+                        <td class="MaxUmidFora" id="MaxUmidFora"></td>
+                        <td class="DesUmidFora" id="DesUmidFora"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="divTabelaCorrelacao">
+            <table class="tabelaCorrelacao">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>Correlação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr class="linhaTempDentroXtempFora" id="linhaTempDentroXtempFora">
+                        <td>Temperatura Interior X Temperatura Exterior</td>
+                        <td class="CorTempDentroXtempFora" id="CorTempDentroXtempFora"></td>
+                    </tr>
+                    <tr class="linhaUmidDentroXumidFora" id="linhaUmidDentroXumidFora">
+                        <td>Umidade Interior X Umidade Exterior</td>
+                        <td class="CorUmidDentroXumidFora" id="CorUmidDentroXumidFora"></td>
+                    </tr>
+                    <tr class="linhaUmidDentroXtempDentro" id="linhaUmidDentroXtempDentro">
+                        <td>Umidade Interior X Temperatura Interior</td>
+                        <td class="CorUmidDentroXtempDentro" id="CorUmidDentroXtempDentro"></td>
+                    </tr>
+                    <tr class="linhaUmidForaXtempFora" id="linhaUmidForaXtempFora">
+                        <td>Umidade Exterior X Temperatura Exterior</td>
+                        <td class="CorUmidForaXtempFora" id="CorUmidForaXtempFora"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
+<script src="calculations.js"></script>
+<script src="controllerPage.js"></script>
+<script src="formatFile.js"></script>
+<script src="graphics.js"></script>
 </html>

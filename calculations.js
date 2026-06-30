@@ -7,6 +7,7 @@ let maximo = {};
 let afastamento = {};
 let covariancia = {};
 let correlacao={};
+
 function calculaMedia(){
     medias = {};
     let tempForaMd = 0;
@@ -149,7 +150,7 @@ function calculaAfastamento(){
         AfUmidDentro: umidDentroAf
     }
 }
-
+ 
 function calculaCovariancia(){
     covariancia = {};
     let tempDentroXtempFora = 0;
