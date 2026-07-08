@@ -10,12 +10,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="main" id="main">
         <div class="titulo">
             <h1>Análise da Composteira</h1>
             <p class="subtitulo">
                 Envie um arquivo CSV para visualizar estatísticas e gráficos dos sensores.
             </p>
+        </div>
+        <div class="data">
+            <label for="data">Escreva aqui a data da coleta</label>
+            <input type="text" name="text" class="data" id="data">
+        </div>
+        <div class="horario">
+            <label for="campoHorario">Escreva aqui o horário da coleta</label>
+            <input type="text" name="text" id="campoHorario" class="campoHorario">
         </div>
         <div class="upload" id="upload">
             <label for="file">Adicione seu arquivo aqui</label>
@@ -94,9 +103,37 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="graficos" id="graficos">
+                <div class="graficosLinha" id="graficosLinha">
+                    <canvas class="graficoLtempDentroXtempFora" id="graficoLtempDentroXtempFora">
+
+                    </canvas>
+                    <canvas class="graficoLumidDentroXumidFora" id="graficoLumidDentroXumidFora">
+
+                    </canvas>
+                    <canvas class="graficoLtempDentroXumidDentro" id="graficoLtempDentroXumidDentro">
+
+                    </canvas>
+                    <canvas class="graficoLtempForaXumidFora" id="graficoLtempForaXumidFora">
+
+                    </canvas>
+                </div>
+                <div class="graficosBarra" id="graficosBarra">
+                    <canvas class="graficoBtempDentroXtempFora" id="graficoBtempDentroXtempFora"> 
+
+                    </canvas>
+                    <canvas class="graficoBumidDentroXumidFora" id="graficoBumidDentroXumidFora">
+
+                    </canvas>
+                    <canvas class="graficoBdesvios" id="graficoBdesvios">
+
+                    </canvas>
+                </div>
+            </div>
         </div>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="calculations.js"></script>
 <script src="controllerPage.js"></script>
 <script src="formatFile.js"></script>

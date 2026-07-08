@@ -20,7 +20,7 @@ function evento (e){
                 tempFora: parseFloat(dados[1]),
                 umidDentro: parseFloat(dados[2]),
                 umidFora: parseFloat(dados[3]),
-                timeStamp: dados[4]
+                timeStamp: parseInt(dados[4])
     	    }
             arrayOfObjects.push(leitura);
         }
