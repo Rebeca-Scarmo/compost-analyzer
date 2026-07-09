@@ -1,7 +1,4 @@
-/**TO DO:
- * Fazer o resto dos gráficos
- * 
- * */
+
 let arrayTempDentro = [];
 let arrayTempFora = [];
 let arrayUmidDentro = [];
@@ -20,7 +17,7 @@ function transformaEmArray(){
 }
 
 function transformaEmHoras(){
-    let horario = (document.getElementById("horario").value).split(":");
+    let horario = (document.getElementById("campoHorario").value).split(":");
     let horarioEmMin = (parseInt(horario[0])*60)+ parseInt(horario[1]);
     let horarioEmMinAtual = [];
     for(let i=0;i<arraytimeStamp.length;i++){
@@ -29,22 +26,76 @@ function transformaEmHoras(){
     }
 }
 
-function criaGraficoLtempDentroXtempFora(){
-    const canvas = document.getElementById("graficoLtempDentroXtempFora");
+function criaGraficoLinha(canvaHTML,eixoX, eixoY1, eixoY2, label1, label2){
+    const canvas = document.getElementById(canvaHTML);
     const grafico = new Chart(canvas, {
         type: 'line',
         data: {
-            labels: arraytimeStamp,       
+            labels: eixoX,       
             datasets: [
                 {
-                    label: 'Temperatura Interior',
-                    data: arrayTempDentro
+                    label: label1,
+                    data: eixoY1
                 },
                 {
-                    label: 'Temperatura Exterior', 
-                    data: arrayTempFora   
+                    label: label2, 
+                    data: eixoY2   
                 }
             ]
         }
     });
+}
+
+function criaGraficoBarra(canvaHTML,eixoX, eixoY1, eixoY2, label1, label2){
+    const canvas = document.getElementById(canvaHTML);
+    const grafico = new Chart(canvas, {
+        type: 'bar',
+        data: {
+            labels: eixoX,       
+            datasets: [
+                {
+                    label: label1,
+                    data: eixoY1
+                },
+                {
+                    label: label2, 
+                    data: eixoY2   
+                }
+            ]
+        }
+    });
+}
+
+function criaGraficoDesvios(){
+    const canvas = document.getElementById("graficoBdesvios");
+    const grafico = new Chart(canvas, {
+        type: 'bar',
+        data: {
+            labels: ['Temp Interior', 'Temp Exterior', 'Umid Interior', 'Umid Exterior'],
+            datasets: [
+                {
+                    label: "Desvio Padrão",
+                    data: [desvio.DTempDentro, desvio.DTempFora, desvio.DUmidDentro, desvio.DUmidFora]
+                }
+            ]
+        }
+    })
+}
+
+function criaGraficos(){
+    transformaEmArray();
+    transformaEmHoras();
+    criaGraficoLinha("graficoLtempDXtempF",arraytimeStamp,arrayTempDentro,arrayTempFora,
+        "Temperatura Interna","Temperatura Externa");
+    criaGraficoLinha("graficoLumidDXumidF",arraytimeStamp,arrayUmidDentro,arrayUmidFora,
+        "Umidade Interna","Umidade Externa");
+    criaGraficoLinha("graficoLtempDXumidD",arraytimeStamp,arrayTempDentro,arrayUmidDentro,
+        "Temperatura Interna","Umidade Interna");
+    criaGraficoLinha("graficoLtempFXumidF",arraytimeStamp,arrayTempFora,arrayUmidFora,
+        "Temperatura Externa","Umidade Externa");
+    criaGraficoBarra("graficoMediaBtempDXtempF","Médias",[medias.MdTempDentro],[medias.MdTempFora],
+        "Média Temperatura Interna", "Média Temperatura Externa");
+    criaGraficoBarra("graficoMediaBumidDXumidF","Médias",[medias.MdUmidDentro],[medias.MdUmidFora],
+        "Média Umidade Interna","Média Umidade Externa");
+    criaGraficoDesvios();
 }

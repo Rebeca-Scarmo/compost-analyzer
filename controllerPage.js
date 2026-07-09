@@ -8,6 +8,7 @@ function calculos(){
     calculaCovariancia();
     calculaCorrelacao();
     exibirResultados();
+    criaGraficos();
 }
 
 function exibirResultados (){
