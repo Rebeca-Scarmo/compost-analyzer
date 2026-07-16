@@ -1,66 +1,111 @@
 :root{
-    --verde-escuro: #346739;
-    --verde: #79AE6F;
-    --verde-claro: #9FCB98;
-    --creme: #F2EDC2;
+    --verde-escuro:#346739;
+    --verde:#79AE6F;
+    --verde-claro:#9FCB98;
+    --creme:#F2EDC2;
 
-    --fundo: #f8faf6;
-    --texto: #2e3a2d;
-    --borda: #d9e4d4;
+    --fundo:#f4f7f2;
+    --branco:#fff;
+    --texto:#303030;
+    --borda:#d8e4d4;
+
+    --sombra:0 8px 20px rgba(0,0,0,.08);
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Nunito', sans-serif;
+    font-family:'Nunito',sans-serif;
 }
 
 body{
     background:var(--fundo);
     color:var(--texto);
-    padding:40px;
+    padding:35px;
 }
 
 .main{
-    max-width:1200px;
+    max-width:1300px;
     margin:auto;
     display:flex;
     flex-direction:column;
-    gap:35px;
+    gap:30px;
 }
 
-.upload{
-    background:white;
-    border:2px solid var(--verde-claro);
-    border-radius:18px;
-    padding:30px;
+/* ========================= */
+
+.titulo{
+    text-align:center;
+}
+
+h1{
+    color:var(--verde-escuro);
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+.subtitulo{
+    color:#666;
+}
+
+/* ========================= */
+
+.data,
+.horario,
+.upload,
+.divTabela,
+.divTabelaCorrelacao{
+    background:var(--branco);
+    border-radius:16px;
+    box-shadow:var(--sombra);
+    padding:25px;
+}
+
+.data,
+.horario{
     display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    flex-direction:column;
+    gap:10px;
 }
 
-.upload label{
-    font-size:1.2rem;
+label{
     font-weight:700;
     color:var(--verde-escuro);
 }
 
-.file{
+/* ========================= */
+
+input[type="text"]{
+    padding:12px;
+    border:2px solid var(--borda);
+    border-radius:10px;
     font-size:1rem;
+    transition:.25s;
+}
+
+input[type="text"]:focus{
+    outline:none;
+    border-color:var(--verde);
+}
+
+/* ========================= */
+
+.upload{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
 }
 
 .file::file-selector-button{
+    border:none;
     background:var(--verde);
     color:white;
-    border:none;
     padding:10px 18px;
     border-radius:8px;
     cursor:pointer;
-    font-weight:700;
     transition:.25s;
 }
 
@@ -69,14 +114,14 @@ body{
 }
 
 .btnUpload{
+    padding:12px 28px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
     background:var(--verde-escuro);
     color:white;
-    border:none;
-    padding:12px 28px;
-    border-radius:10px;
     font-size:1rem;
-    font-weight:700;
-    cursor:pointer;
+    font-weight:bold;
     transition:.25s;
 }
 
@@ -85,18 +130,16 @@ body{
     transform:translateY(-2px);
 }
 
+/* ========================= */
+
 .divTabela,
 .divTabelaCorrelacao{
-    background:white;
-    border-radius:18px;
-    padding:25px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    overflow-x:auto;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    overflow:hidden;
 }
 
 thead{
@@ -104,15 +147,10 @@ thead{
     color:white;
 }
 
-th{
-    padding:15px;
-    font-size:1rem;
-}
-
+th,
 td{
     padding:14px;
     text-align:center;
-    border-bottom:1px solid var(--borda);
 }
 
 td:first-child{
@@ -120,28 +158,61 @@ td:first-child{
     font-weight:700;
 }
 
+tbody tr{
+    border-bottom:1px solid var(--borda);
+}
+
 tbody tr:nth-child(even){
-    background:#f7fbf5;
+    background:#f7faf6;
 }
 
 tbody tr:hover{
     background:var(--creme);
-    transition:.2s;
 }
 
-.divTabelaCorrelacao td:last-child{
-    font-weight:700;
-    color:var(--verde-escuro);
+/* ========================= */
+
+.graficosLinha,
+.graficosBarra{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:25px;
+    margin-top:30px;
 }
 
-@media (max-width:900px){
+canvas{
+    background:white;
+    border-radius:16px;
+    box-shadow:var(--sombra);
+    padding:15px;
+    width:100%!important;
+    height:340px!important;
+}
+
+/* ========================= */
+
+@media(max-width:900px){
 
     body{
         padding:20px;
     }
 
+    h1{
+        font-size:2rem;
+    }
+
     .upload{
         flex-direction:column;
+        align-items:stretch;
+    }
+
+    .btnUpload{
+        width:100%;
+    }
+
+    .graficosLinha,
+    .graficosBarra{
+        grid-template-columns:1fr;
     }
 
     table{
@@ -152,17 +223,4 @@ tbody tr:hover{
     td{
         padding:10px;
     }
-}
-h1{
-    text-align:center;
-    color:var(--verde-escuro);
-    font-size:2.2rem;
-    margin-bottom:8px;
-}
-
-.subtitulo{
-    text-align:center;
-    color:#5f6d5d;
-    margin-bottom:30px;
-    font-size:1.05rem;
 }
