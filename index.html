@@ -18,19 +18,21 @@
                 Envie um arquivo CSV para visualizar estatísticas e gráficos dos sensores.
             </p>
         </div>
-        <div class="data">
-            <label for="data">Escreva aqui a data da coleta</label>
-            <input type="text" name="text" class="data" id="data">
-        </div>
-        <div class="horario">
-            <label for="campoHorario">Escreva aqui o horário da coleta</label>
-            <input type="text" name="text" id="campoHorario" class="campoHorario">
-        </div>
-        <div class="upload" id="upload">
-            <label for="file">Adicione seu arquivo aqui</label>
-            <input type="file" name="file" id="file" class="file">
-
-            <button class="btnUpload" id="btnUpload">Enviar</button>
+        <div class="formulario">
+            <div class="data_coleta">
+                <label for="data">Data da coleta</label>
+                <input type="text" name="text" class="data" id="data">
+            </div>
+            <div class="horario_coleta">
+                <label for="campoHorario">Horário da coleta</label>
+                <input type="text" name="text" id="campoHorario" class="campoHorario">
+            </div>
+            <div class="upload_coleta" id="upload">
+                <label for="file">Arquivo</label>
+                <input type="file" name="file" id="file" class="file">
+    
+                <button class="btnUpload" id="btnUpload">Enviar</button>
+            </div>
         </div>
 
         <div class="divTabela" id="divTabela">
